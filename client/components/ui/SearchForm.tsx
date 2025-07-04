@@ -34,7 +34,7 @@ export default function SearchForm({
         <h2 className="text-xl font-semibold text-gray-900 mb-6">{title}</h2>
 
         <div className="space-y-6">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-2">
                 {searchLabel}
@@ -63,7 +63,7 @@ export default function SearchForm({
             </div>
           </div>
 
-          <div className="flex items-center gap-4">
+          <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4">
             <Button className="bg-primary hover:bg-primary/90 text-white px-6">
               <Search className="w-4 h-4 mr-2" />
               {title}
