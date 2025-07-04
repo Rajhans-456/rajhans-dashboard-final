@@ -40,7 +40,7 @@ export default function Search() {
                 <h3 className="text-lg font-semibold text-gray-900 mb-4">
                   Details Of Customer
                 </h3>
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
                   <FormInput label="Customer Name" />
                   <FormInput label="Account No." />
                   <FormInput label="Mobile No." />
@@ -65,7 +65,7 @@ export default function Search() {
                 <h3 className="text-lg font-semibold text-gray-900 mb-4">
                   Details Of Guarantor
                 </h3>
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
                   <FormInput label="Guarantor's Name" />
                   <FormInput label="Account No." />
                   <FormInput label="Mobile No." />
@@ -99,7 +99,7 @@ export default function Search() {
                 <h3 className="text-lg font-semibold text-gray-900 mb-4">
                   Results
                 </h3>
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
                   <FormInput label="Chq/Trxn No." />
                   <FormInput label="Account No." />
                   <FormInput label="Mobile No." />
