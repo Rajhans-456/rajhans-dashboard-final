@@ -8,6 +8,9 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Dashboard from "./pages/Dashboard";
 import Search from "./pages/Search";
+import SearchCustomer from "./pages/SearchCustomer";
+import SearchGuarantor from "./pages/SearchGuarantor";
+import SearchReceipts from "./pages/SearchReceipts";
 import EMICalculator from "./pages/EMICalculator";
 import Entries from "./pages/Entries";
 import NotFound from "./pages/NotFound";
@@ -23,6 +26,9 @@ const App = () => (
         <Routes>
           <Route path="/" element={<Dashboard />} />
           <Route path="/search" element={<Search />} />
+          <Route path="/search/customer" element={<SearchCustomer />} />
+          <Route path="/search/guarantor" element={<SearchGuarantor />} />
+          <Route path="/search/receipts" element={<SearchReceipts />} />
           <Route path="/emi-calculator" element={<EMICalculator />} />
           <Route path="/entries" element={<Entries />} />
           <Route path="/transactions" element={<NotFound />} />
