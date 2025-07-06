@@ -13,6 +13,14 @@ import SearchGuarantor from "./pages/SearchGuarantor";
 import SearchReceipts from "./pages/SearchReceipts";
 import EMICalculator from "./pages/EMICalculator";
 import Entries from "./pages/Entries";
+import Edits from "./pages/Edits";
+import EditCustomer from "./pages/EditCustomer";
+import EditGuarantor from "./pages/EditGuarantor";
+import EditVehicle from "./pages/EditVehicle";
+import ChangeGuarantor from "./pages/ChangeGuarantor";
+import ChangeEMIDate from "./pages/ChangeEMIDate";
+import EditExtAcNo from "./pages/EditExtAcNo";
+import SelectLoan from "./pages/SelectLoan";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -33,7 +41,17 @@ const App = () => (
           <Route path="/entries" element={<Entries />} />
           <Route path="/transactions" element={<NotFound />} />
           <Route path="/updates" element={<NotFound />} />
-          <Route path="/edits" element={<NotFound />} />
+          <Route path="/edits" element={<Edits />} />
+          <Route path="/edits/customer" element={<EditCustomer />} />
+          <Route path="/edits/co-borrower" element={<NotFound />} />
+          <Route path="/edits/guarantor" element={<EditGuarantor />} />
+          <Route path="/edits/loan" element={<SelectLoan />} />
+          <Route path="/edits/restructure-loan" element={<NotFound />} />
+          <Route path="/edits/vehicle" element={<EditVehicle />} />
+          <Route path="/edits/change-guarantor" element={<ChangeGuarantor />} />
+          <Route path="/edits/change-hp" element={<NotFound />} />
+          <Route path="/edits/change-emi-date" element={<ChangeEMIDate />} />
+          <Route path="/edits/edit-ext-ac-no" element={<EditExtAcNo />} />
           <Route path="/reports" element={<NotFound />} />
           <Route path="/setup" element={<NotFound />} />
           <Route path="/accounts" element={<NotFound />} />
