@@ -15,11 +15,14 @@ import EMICalculator from "./pages/EMICalculator";
 import Entries from "./pages/Entries";
 import Edits from "./pages/Edits";
 import EditCustomer from "./pages/EditCustomer";
+import EditCoBorrower from "./pages/EditCoBorrower";
 import EditGuarantor from "./pages/EditGuarantor";
 import EditVehicle from "./pages/EditVehicle";
 import ChangeGuarantor from "./pages/ChangeGuarantor";
 import ChangeEMIDate from "./pages/ChangeEMIDate";
+import ChangeHP from "./pages/ChangeHP";
 import EditExtAcNo from "./pages/EditExtAcNo";
+import RestructureLoan from "./pages/RestructureLoan";
 import SelectLoan from "./pages/SelectLoan";
 import NotFound from "./pages/NotFound";
 
@@ -43,13 +46,13 @@ const App = () => (
           <Route path="/updates" element={<NotFound />} />
           <Route path="/edits" element={<Edits />} />
           <Route path="/edits/customer" element={<EditCustomer />} />
-          <Route path="/edits/co-borrower" element={<NotFound />} />
+          <Route path="/edits/co-borrower" element={<EditCoBorrower />} />
           <Route path="/edits/guarantor" element={<EditGuarantor />} />
           <Route path="/edits/loan" element={<SelectLoan />} />
-          <Route path="/edits/restructure-loan" element={<NotFound />} />
+          <Route path="/edits/restructure-loan" element={<RestructureLoan />} />
           <Route path="/edits/vehicle" element={<EditVehicle />} />
           <Route path="/edits/change-guarantor" element={<ChangeGuarantor />} />
-          <Route path="/edits/change-hp" element={<NotFound />} />
+          <Route path="/edits/change-hp" element={<ChangeHP />} />
           <Route path="/edits/change-emi-date" element={<ChangeEMIDate />} />
           <Route path="/edits/edit-ext-ac-no" element={<EditExtAcNo />} />
           <Route path="/reports" element={<NotFound />} />
