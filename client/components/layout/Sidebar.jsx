@@ -25,6 +25,48 @@ const sidebarItems = [
   { name: "Transactions", path: "/transactions", icon: CreditCard },
 ];
 
+const entriesItems = [
+  { name: "Customer Entry", path: "/entries/customerentry" },
+  { name: "CoBorrower Entry", path: "/entries/coborrowerentry" },
+  { name: "Guarantor Entry", path: "/entries/guarantorentry" },
+  { name: "Loan Entry", path: "/entries/loanentry" },
+  { name: "Vehicle Entry", path: "/entries/vehicleentry" },
+];
+
+const updatesItemsNested = [
+  {
+    name: "UPDATE",
+    children: [
+      { name: "Update Regn NO.", path: "/updates/updateRegnno" },
+      { name: "Update Participation Cheque", path: "/updates/updateparticipationcheque" },
+      { name: "Update Ext Loan Ac No.", path: "/updates/updateextloanacno" },
+      { name: "Update Ext Cheque", path: "/updates/updateextcheque" },
+      { name: "Update Ext EMI Date", path: "/updates/updateextemidate" },
+      { name: "Update Insurance Details", path: "/updates/updateinsurancedetails" },
+      { name: "Upload Insurance Policy", path: "/updates/uploavehicleinsurancepolicy" },
+      { name: "Upload Vehicle Invoice", path: "/updates/uploadvehicleinvoice" },
+      { name: "Track Veh Document", path: "/updates/trackvehdocument" },
+      { name: "Chqs In Clearing", path: "/updates/chqsinclearing" },
+    ],
+  },
+  {
+    name: "EMI PDC",
+    children: [
+      { name: "Update Add PDC", path: "/updates/updateaddpdc" },
+      { name: "Update EMI PDC", path: "/updates/updateemipdc" },
+      { name: "Update Spoiled PDC", path: "/updates/updatespoiledpdc" },
+    ],
+  },
+  {
+    name: "Add",
+    children: [
+      { name: "Add DP Balance", path: "/updates/updateadddownpaymentbalance" },
+      { name: "Add Other Charges", path: "/updates/updateaddothercharges" },
+    ],
+  },
+];
+
+
 const updatesItems = [
   { name: "Update Customer", path: "/updates/customer" },
   { name: "Update Loan", path: "/updates/loan" },
@@ -42,13 +84,72 @@ const editItems = [
   { name: "CHANGE HP", path: "/edits/change-hp" },
   { name: "CHANGE EMI DATE", path: "/edits/change-emi-date" },
   { name: "EDIT EXT AC NO", path: "/edits/edit-ext-ac-no" },
+]; 
+const setupSystemItems = [
+  { name: "Update OD Loans", path: "/setup/update-od-loans" },
+  { name: "External Resources",
+    children:[
+{ name: "Sales Team", path: "/setup/sales-team" },
+  { name: "Sales Agents", path: "/setup/sales-agents" },
+  { name: "Registration Agents", path: "/setup/registration-agents" },
+  { name: "Collection Agents", path: "/setup/collection-agents" },
+  { name: "Collection Area", path: "/setup/collection-area" },
+  { name: "Dealers", path: "/setup/dealers" },
+    ],
+  },
+  { name: "Users", path: "/setup/users" },
 ];
 
+
 const reportsItems = [
-  { name: "Monthly Reports", path: "/reports/monthly" },
-  { name: "Customer Reports", path: "/reports/customer" },
-  { name: "Vehicle Reports", path: "/reports/vehicle" },
+  {
+    name: "EMI Related",
+    children: [
+      { name: "EMI Due Report", path: "/reports/emidue" },
+      { name: "EMI History", path: "/reports/emihistory" },
+      { name: "Receipt History", path: "/reports/receipthistory" },
+      { name: "Loan Ledger", path: "/reports/loanledger" },
+      { name: "EMI Expected", path: "/reports/emiexpected" },
+      { name: "EMI Schedule", path: "/reports/emischedule" },
+      { name: "Chq. Return Report", path: "/reports/chequereturn" },
+    ],
+  },
+  {
+    name: "Loan Related",
+    children: [
+      { name: "Customer W/O Loan", path: "/reports/customerwithoutloan" },
+      { name: "Loan AC Statement", path: "/reports/loanacstatement" },
+      { name: "First / Last EMI Report", path: "/reports/firstlastemi" },
+      { name: "Loans Given", path: "/reports/loansgiven" },
+      { name: "Loan Status Report", path: "/reports/loanstatus" },
+      { name: "LCC Report", path: "/reports/lccreport" },
+      { name: "Bucket List", path: "/reports/bucketlist" },
+      { name: "Overdue Loans", path: "/reports/overdueloans" },
+      { name: "Recalled Loans", path: "/reports/recalledloans" },
+    ],
+  },
+  {
+    name: "Vehicle Related",
+    children: [
+      { name: "Vehicles Delivered", path: "/reports/vehiclesdelivered" },
+      { name: "Dealer-Wise Vehicle", path: "/reports/dealerwisevehicle" },
+      { name: "Dealer Payment Due", path: "/reports/dealerpaymentdue" },
+      { name: "Dealer Payment Report", path: "/reports/dealerpaymentreport" },
+      { name: "Insurance Due Report", path: "/reports/insurancedue" },
+      { name: "Vehicles in Possession", path: "/reports/vehiclesinpossession" },
+    ],
+  },
+  {
+    name: "Misc. Reports",
+    children: [
+      { name: "Collection Ag. Loan Count", path: "/reports/collectionagentloancount" },
+      { name: "Customer W/O Coll. Area", path: "/reports/customernocollectionarea" },
+      { name: "Customer List", path: "/reports/customerlist" },
+      { name: "Dealer List", path: "/reports/dealerlist" },
+    ],
+  },
 ];
+
 
 export default function Sidebar() {
   const location = useLocation();
@@ -109,37 +210,32 @@ export default function Sidebar() {
             );
           })}
 
-          {/* Updates Dropdown */}
+          {/* Entries Dropdown */}
           <div>
             <button
-              onClick={() => toggleDropdown("updates")}
+              onClick={() => toggleDropdown("entries")}
               className={cn(
                 "w-full flex items-center justify-between px-3 py-2 rounded-lg text-sm font-medium transition-colors",
-                isUpdatesPageActive
+                location.pathname.startsWith("/entries")
                   ? "bg-primary text-white"
-                  : "text-gray-700 hover:bg-gray-100",
+                  : "text-gray-700 hover:bg-gray-100"
               )}
             >
               <div className="flex items-center space-x-3">
-                <RefreshCw className="w-5 h-5" />
-                <span>UPDATES</span>
+                <FileText className="w-5 h-5" />
+                <span>Entries</span>
               </div>
-              {isDropdownOpen("updates") ? (
-                <ChevronDown className="w-4 h-4" />
-              ) : (
-                <ChevronRight className="w-4 h-4" />
-              )}
+              {isDropdownOpen("entries") ? <ChevronDown className="w-4 h-4" /> : <ChevronRight className="w-4 h-4" />}
             </button>
-            {isDropdownOpen("updates") && (
+            {isDropdownOpen("entries") && (
               <div className="ml-6 mt-1 space-y-1">
-                {updatesItems.map((item) => (
+                {entriesItems.map((item) => (
                   <Link
                     key={item.name}
                     to={item.path}
                     className={cn(
                       "block px-3 py-2 text-sm text-gray-600 hover:text-gray-900 hover:bg-gray-50 rounded",
-                      location.pathname === item.path &&
-                        "text-primary bg-blue-50",
+                      location.pathname === item.path && "text-primary bg-blue-50"
                     )}
                   >
                     {item.name}
@@ -148,6 +244,59 @@ export default function Sidebar() {
               </div>
             )}
           </div>
+
+          {/* Updates Dropdown */}
+          <div>
+            <button
+              onClick={() => toggleDropdown("updates")}
+              className={cn(
+                "w-full flex items-center justify-between px-3 py-2 rounded-lg text-sm font-medium transition-colors",
+                location.pathname.startsWith("/updates")
+                  ? "bg-primary text-white"
+                  : "text-gray-700 hover:bg-gray-100"
+              )}
+            >
+              <div className="flex items-center space-x-3">
+                <RefreshCw className="w-5 h-5" />
+                <span>Updates</span>
+              </div>
+              {isDropdownOpen("updates") ? <ChevronDown className="w-4 h-4" /> : <ChevronRight className="w-4 h-4" />}
+            </button>
+
+            {isDropdownOpen("updates") && (
+              <div className="ml-4 mt-1 space-y-1">
+                {updatesItemsNested.map((group) => (
+                  <div key={group.name}>
+                    <button
+                      onClick={() => toggleDropdown(group.name)}
+                      className="flex justify-between w-full text-left text-sm font-semibold text-gray-700 hover:bg-gray-100 px-3 py-2 rounded"
+                    >
+                      <span>{group.name}</span>
+                      {isDropdownOpen(group.name) ? <ChevronDown className="w-4 h-4" /> : <ChevronRight className="w-4 h-4" />}
+                    </button>
+
+                    {isDropdownOpen(group.name) && (
+                      <div className="ml-4 mt-1 space-y-1">
+                        {group.children.map((item) => (
+                          <Link
+                            key={item.name}
+                            to={item.path}
+                            className={cn(
+                              "block px-3 py-2 text-sm text-gray-600 hover:text-gray-900 hover:bg-gray-50 rounded",
+                              location.pathname === item.path && "text-primary bg-blue-50"
+                            )}
+                          >
+                            {item.name}
+                          </Link>
+                        ))}
+                      </div>
+                    )}
+                  </div>
+                ))}
+              </div>
+            )}
+          </div>
+
 
           {/* Edit Dropdown */}
           <div>
@@ -189,61 +338,138 @@ export default function Sidebar() {
             )}
           </div>
 
-          {/* Reports Dropdown */}
-          <div>
+{/* Reports Dropdown with Nested Menus */}
+<div>
+  <button
+    onClick={() => toggleDropdown("reports")}
+    className={cn(
+      "w-full flex items-center justify-between px-3 py-2 rounded-lg text-sm font-medium transition-colors",
+      isReportsPageActive ? "bg-primary text-white" : "text-gray-700 hover:bg-gray-100",
+    )}
+  >
+    <div className="flex items-center space-x-3">
+      <BarChart3 className="w-5 h-5" />
+      <span>Reports</span>
+    </div>
+    {isDropdownOpen("reports") ? (
+      <ChevronDown className="w-4 h-4" />
+    ) : (
+      <ChevronRight className="w-4 h-4" />
+    )}
+  </button>
+
+  {isDropdownOpen("reports") && (
+    <div className="ml-4 mt-1 space-y-1">
+      {reportsItems.map((group) => (
+        <div key={group.name}>
+          <button
+            onClick={() => toggleDropdown(group.name)}
+            className="flex justify-between w-full text-left text-sm font-semibold text-gray-700 hover:bg-gray-100 px-3 py-2 rounded"
+          >
+            <span>{group.name}</span>
+            {isDropdownOpen(group.name) ? (
+              <ChevronDown className="w-4 h-4" />
+            ) : (
+              <ChevronRight className="w-4 h-4" />
+            )}
+          </button>
+
+          {isDropdownOpen(group.name) && (
+            <div className="ml-4 mt-1 space-y-1">
+              {group.children.map((item) => (
+                <Link
+                  key={item.name}
+                  to={item.path}
+                  className={cn(
+                    "block px-3 py-2 text-sm text-gray-600 hover:text-gray-900 hover:bg-gray-50 rounded",
+                    location.pathname === item.path && "text-primary bg-blue-50"
+                  )}
+                >
+                  {item.name}
+                </Link>
+              ))}
+            </div>
+          )}
+        </div>
+      ))}
+    </div>
+  )}
+</div>
+
+
+          {/* Setup and Accounts */}
+
+{/* Setup System Dropdown */}
+<div>
+  <button
+    onClick={() => toggleDropdown("setupSystem")}
+    className={cn(
+      "w-full flex items-center justify-between px-3 py-2 rounded-lg text-sm font-medium transition-colors",
+      location.pathname.startsWith("/setup") ? "bg-primary text-white" : "text-gray-700 hover:bg-gray-100",
+    )}
+  >
+    <div className="flex items-center space-x-3">
+      <Settings className="w-5 h-5" />
+      <span>Setup System</span>
+    </div>
+    {isDropdownOpen("setupSystem") ? (
+      <ChevronDown className="w-4 h-4" />
+    ) : (
+      <ChevronRight className="w-4 h-4" />
+    )}
+  </button>
+
+  {isDropdownOpen("setupSystem") && (
+    <div className="ml-6 mt-1 space-y-1">
+      {setupSystemItems.map((item) =>
+        item.children ? (
+          <div key={item.name}>
             <button
-              onClick={() => toggleDropdown("reports")}
-              className={cn(
-                "w-full flex items-center justify-between px-3 py-2 rounded-lg text-sm font-medium transition-colors",
-                isReportsPageActive
-                  ? "bg-primary text-white"
-                  : "text-gray-700 hover:bg-gray-100",
-              )}
+              onClick={() => toggleDropdown(item.name)}
+              className="flex justify-between w-full text-left text-sm font-semibold text-gray-700 hover:bg-gray-100 px-3 py-2 rounded"
             >
-              <div className="flex items-center space-x-3">
-                <BarChart3 className="w-5 h-5" />
-                <span>Reports</span>
-              </div>
-              <span className="w-2 h-2 bg-red-500 rounded-full mr-2"></span>
-              {isDropdownOpen("reports") ? (
+              <span>{item.name}</span>
+              {isDropdownOpen(item.name) ? (
                 <ChevronDown className="w-4 h-4" />
               ) : (
                 <ChevronRight className="w-4 h-4" />
               )}
             </button>
-            {isDropdownOpen("reports") && (
-              <div className="ml-6 mt-1 space-y-1">
-                {reportsItems.map((item) => (
+            {isDropdownOpen(item.name) && (
+              <div className="ml-4 mt-1 space-y-1">
+                {item.children.map((child) => (
                   <Link
-                    key={item.name}
-                    to={item.path}
+                    key={child.name}
+                    to={child.path}
                     className={cn(
                       "block px-3 py-2 text-sm text-gray-600 hover:text-gray-900 hover:bg-gray-50 rounded",
-                      location.pathname === item.path &&
-                        "text-primary bg-blue-50",
+                      location.pathname === child.path && "text-primary bg-blue-50"
                     )}
                   >
-                    {item.name}
+                    {child.name}
                   </Link>
                 ))}
               </div>
             )}
           </div>
-
-          {/* Setup and Accounts */}
+        ) : (
           <Link
-            to="/setup"
+            key={item.name}
+            to={item.path}
             className={cn(
-              "flex items-center space-x-3 px-3 py-2 rounded-lg text-sm font-medium transition-colors",
-              location.pathname === "/setup"
-                ? "bg-primary text-white"
-                : "text-gray-700 hover:bg-gray-100",
+              "block px-3 py-2 text-sm text-gray-600 hover:text-gray-900 hover:bg-gray-50 rounded",
+              location.pathname === item.path && "text-primary bg-blue-50"
             )}
           >
-            <Settings className="w-5 h-5" />
-            <span>Setup</span>
-            <span className="ml-auto w-2 h-2 bg-red-500 rounded-full"></span>
+            {item.name}
           </Link>
+        )
+      )}
+    </div>
+  )}
+</div>
+
+
 
           <Link
             to="/accounts"
