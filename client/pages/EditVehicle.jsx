@@ -1,36 +1,28 @@
 import DashboardLayout from "@/components/layout/DashboardLayout";
 import { Button } from "@/components/ui/button";
-import { User, Car, FileText, Shield, Search } from "lucide-react";
+import { User, Car, FileText, Shield } from "lucide-react";
 
 export default function EditVehicle() {
   return (
-    <div className="min-h-screen bg-gray-50">
-      {/* Blue Header */}
-      <div className="bg-blue-500 text-white p-4 flex justify-between items-center">
-        <h1 className="text-xl font-semibold">EDIT VEHICLE DETAILS</h1>
-        <div className="flex items-center space-x-4">
-          <div className="relative">
-            <input
-              type="text"
-              placeholder="Search..."
-              className="px-4 py-2 rounded-md text-gray-900 w-64"
-            />
-          </div>
-          <Button className="bg-blue-700 hover:bg-blue-800 text-white">
-            <Search className="w-4 h-4 mr-2" />
-            Search
-          </Button>
+    <DashboardLayout>
+      <div className="max-w-7xl mx-auto space-y-6">
+        {/* Header */}
+        <div>
+          <h1 className="text-2xl font-semibold text-gray-900">
+            Edit Vehicle Details
+          </h1>
+          <p className="text-sm text-gray-500 mt-1">
+            Edits &gt; Vehicle &gt; Edit
+          </p>
         </div>
-      </div>
 
-      <div className="p-6 max-w-7xl mx-auto">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
           {/* Left Column - Customer Information */}
           <div className="space-y-6">
             <div className="bg-white rounded-lg border border-gray-200 p-6">
-              <div className="flex items-center mb-6 text-blue-500">
-                <User className="w-5 h-5 mr-2" />
-                <h2 className="text-lg font-semibold">Customer Information</h2>
+              <div className="flex items-center mb-6">
+                <User className="w-5 h-5 text-blue-500 mr-2" />
+                <h2 className="text-lg font-semibold text-gray-900">Customer Information</h2>
               </div>
 
               <div className="space-y-4">
@@ -42,7 +34,7 @@ export default function EditVehicle() {
                     <input
                       type="text"
                       placeholder="Customer Name"
-                      className="w-full px-3 py-2 border border-gray-300 rounded-md"
+                      className="w-full px-3 py-2 border border-teal-400 rounded-md focus:ring-2 focus:ring-teal-500 focus:border-transparent"
                     />
                   </div>
                   <div>
@@ -52,7 +44,7 @@ export default function EditVehicle() {
                     <input
                       type="text"
                       placeholder="Customer ID"
-                      className="w-full px-3 py-2 border border-gray-300 rounded-md"
+                      className="w-full px-3 py-2 border border-teal-400 rounded-md focus:ring-2 focus:ring-teal-500 focus:border-transparent"
                     />
                   </div>
                 </div>
@@ -65,7 +57,7 @@ export default function EditVehicle() {
                     <input
                       type="text"
                       placeholder="Loan Ac No"
-                      className="w-full px-3 py-2 border border-gray-300 rounded-md"
+                      className="w-full px-3 py-2 border border-teal-400 rounded-md focus:ring-2 focus:ring-teal-500 focus:border-transparent"
                     />
                   </div>
                   <div>
@@ -75,7 +67,7 @@ export default function EditVehicle() {
                     <input
                       type="text"
                       placeholder="Ext. Ac No"
-                      className="w-full px-3 py-2 border border-gray-300 rounded-md"
+                      className="w-full px-3 py-2 border border-teal-400 rounded-md focus:ring-2 focus:ring-teal-500 focus:border-transparent"
                     />
                   </div>
                 </div>
@@ -88,7 +80,7 @@ export default function EditVehicle() {
                     <input
                       type="text"
                       placeholder="Booking No"
-                      className="w-full px-3 py-2 border border-gray-300 rounded-md"
+                      className="w-full px-3 py-2 border border-teal-400 rounded-md focus:ring-2 focus:ring-teal-500 focus:border-transparent"
                     />
                   </div>
                   <div>
@@ -98,7 +90,7 @@ export default function EditVehicle() {
                     <input
                       type="text"
                       placeholder="Dealer Name"
-                      className="w-full px-3 py-2 border border-gray-300 rounded-md"
+                      className="w-full px-3 py-2 border border-teal-400 rounded-md focus:ring-2 focus:ring-teal-500 focus:border-transparent"
                     />
                   </div>
                 </div>
@@ -107,9 +99,9 @@ export default function EditVehicle() {
 
             {/* Registration & Delivery */}
             <div className="bg-white rounded-lg border border-gray-200 p-6">
-              <div className="flex items-center mb-6 text-blue-500">
-                <FileText className="w-5 h-5 mr-2" />
-                <h2 className="text-lg font-semibold">
+              <div className="flex items-center mb-6">
+                <FileText className="w-5 h-5 text-blue-500 mr-2" />
+                <h2 className="text-lg font-semibold text-gray-900">
                   Registration & Delivery
                 </h2>
               </div>
@@ -123,7 +115,7 @@ export default function EditVehicle() {
                     <input
                       type="text"
                       placeholder="Regn Authority"
-                      className="w-full px-3 py-2 border border-gray-300 rounded-md"
+                      className="w-full px-3 py-2 border border-teal-400 rounded-md focus:ring-2 focus:ring-teal-500 focus:border-transparent"
                     />
                   </div>
                   <div>
@@ -133,7 +125,7 @@ export default function EditVehicle() {
                     <input
                       type="text"
                       placeholder="Regn No"
-                      className="w-full px-3 py-2 border border-gray-300 rounded-md"
+                      className="w-full px-3 py-2 border border-teal-400 rounded-md focus:ring-2 focus:ring-teal-500 focus:border-transparent"
                     />
                   </div>
                 </div>
@@ -146,7 +138,7 @@ export default function EditVehicle() {
                     <input
                       type="text"
                       placeholder="Temp Regn No"
-                      className="w-full px-3 py-2 border border-gray-300 rounded-md"
+                      className="w-full px-3 py-2 border border-teal-400 rounded-md focus:ring-2 focus:ring-teal-500 focus:border-transparent"
                     />
                   </div>
                   <div>
@@ -156,7 +148,7 @@ export default function EditVehicle() {
                     <input
                       type="date"
                       placeholder="mm/dd/yyyy"
-                      className="w-full px-3 py-2 border border-gray-300 rounded-md"
+                      className="w-full px-3 py-2 border border-teal-400 rounded-md focus:ring-2 focus:ring-teal-500 focus:border-transparent"
                     />
                   </div>
                 </div>
@@ -169,7 +161,7 @@ export default function EditVehicle() {
                     <input
                       type="text"
                       placeholder="Regn By"
-                      className="w-full px-3 py-2 border border-gray-300 rounded-md"
+                      className="w-full px-3 py-2 border border-teal-400 rounded-md focus:ring-2 focus:ring-teal-500 focus:border-transparent"
                     />
                   </div>
                   <div>
@@ -179,7 +171,7 @@ export default function EditVehicle() {
                     <input
                       type="text"
                       placeholder="Ex. Sh. Price"
-                      className="w-full px-3 py-2 border border-gray-300 rounded-md"
+                      className="w-full px-3 py-2 border border-teal-400 rounded-md focus:ring-2 focus:ring-teal-500 focus:border-transparent"
                     />
                   </div>
                 </div>
@@ -190,9 +182,9 @@ export default function EditVehicle() {
           {/* Right Column - Vehicle Information */}
           <div className="space-y-6">
             <div className="bg-white rounded-lg border border-gray-200 p-6">
-              <div className="flex items-center mb-6 text-blue-500">
-                <Car className="w-5 h-5 mr-2" />
-                <h2 className="text-lg font-semibold">Vehicle Information</h2>
+              <div className="flex items-center mb-6">
+                <Car className="w-5 h-5 text-blue-500 mr-2" />
+                <h2 className="text-lg font-semibold text-gray-900">Vehicle Information</h2>
               </div>
 
               <div className="space-y-4">
@@ -204,7 +196,7 @@ export default function EditVehicle() {
                     <input
                       type="text"
                       placeholder="Vehicle Color"
-                      className="w-full px-3 py-2 border border-gray-300 rounded-md"
+                      className="w-full px-3 py-2 border border-teal-400 rounded-md focus:ring-2 focus:ring-teal-500 focus:border-transparent"
                     />
                   </div>
                   <div>
@@ -214,7 +206,7 @@ export default function EditVehicle() {
                     <input
                       type="text"
                       placeholder="Veh. Type"
-                      className="w-full px-3 py-2 border border-gray-300 rounded-md"
+                      className="w-full px-3 py-2 border border-teal-400 rounded-md focus:ring-2 focus:ring-teal-500 focus:border-transparent"
                     />
                   </div>
                 </div>
@@ -227,7 +219,7 @@ export default function EditVehicle() {
                     <input
                       type="text"
                       placeholder="Manufacturer"
-                      className="w-full px-3 py-2 border border-gray-300 rounded-md"
+                      className="w-full px-3 py-2 border border-teal-400 rounded-md focus:ring-2 focus:ring-teal-500 focus:border-transparent"
                     />
                   </div>
                   <div>
@@ -237,7 +229,7 @@ export default function EditVehicle() {
                     <input
                       type="text"
                       placeholder="Veh. Make"
-                      className="w-full px-3 py-2 border border-gray-300 rounded-md"
+                      className="w-full px-3 py-2 border border-teal-400 rounded-md focus:ring-2 focus:ring-teal-500 focus:border-transparent"
                     />
                   </div>
                 </div>
@@ -250,7 +242,7 @@ export default function EditVehicle() {
                     <input
                       type="text"
                       placeholder="Model MM"
-                      className="w-full px-3 py-2 border border-gray-300 rounded-md"
+                      className="w-full px-3 py-2 border border-teal-400 rounded-md focus:ring-2 focus:ring-teal-500 focus:border-transparent"
                     />
                   </div>
                   <div>
@@ -260,7 +252,7 @@ export default function EditVehicle() {
                     <input
                       type="text"
                       placeholder="Year"
-                      className="w-full px-3 py-2 border border-gray-300 rounded-md"
+                      className="w-full px-3 py-2 border border-teal-400 rounded-md focus:ring-2 focus:ring-teal-500 focus:border-transparent"
                     />
                   </div>
                 </div>
@@ -273,7 +265,7 @@ export default function EditVehicle() {
                     <input
                       type="text"
                       placeholder="Engine No"
-                      className="w-full px-3 py-2 border border-gray-300 rounded-md"
+                      className="w-full px-3 py-2 border border-teal-400 rounded-md focus:ring-2 focus:ring-teal-500 focus:border-transparent"
                     />
                   </div>
                   <div>
@@ -283,7 +275,7 @@ export default function EditVehicle() {
                     <input
                       type="text"
                       placeholder="Chassis No"
-                      className="w-full px-3 py-2 border border-gray-300 rounded-md"
+                      className="w-full px-3 py-2 border border-teal-400 rounded-md focus:ring-2 focus:ring-teal-500 focus:border-transparent"
                     />
                   </div>
                 </div>
@@ -292,9 +284,9 @@ export default function EditVehicle() {
 
             {/* Insurance & Documentation */}
             <div className="bg-white rounded-lg border border-gray-200 p-6">
-              <div className="flex items-center mb-6 text-blue-500">
-                <Shield className="w-5 h-5 mr-2" />
-                <h2 className="text-lg font-semibold">
+              <div className="flex items-center mb-6">
+                <Shield className="w-5 h-5 text-blue-500 mr-2" />
+                <h2 className="text-lg font-semibold text-gray-900">
                   Insurance & Documentation
                 </h2>
               </div>
@@ -308,7 +300,7 @@ export default function EditVehicle() {
                     <input
                       type="text"
                       placeholder="Policy No."
-                      className="w-full px-3 py-2 border border-gray-300 rounded-md"
+                      className="w-full px-3 py-2 border border-teal-400 rounded-md focus:ring-2 focus:ring-teal-500 focus:border-transparent"
                     />
                   </div>
                   <div>
@@ -318,7 +310,7 @@ export default function EditVehicle() {
                     <input
                       type="text"
                       placeholder="Insurance Co"
-                      className="w-full px-3 py-2 border border-gray-300 rounded-md"
+                      className="w-full px-3 py-2 border border-teal-400 rounded-md focus:ring-2 focus:ring-teal-500 focus:border-transparent"
                     />
                   </div>
                 </div>
@@ -331,7 +323,7 @@ export default function EditVehicle() {
                     <input
                       type="date"
                       placeholder="mm/dd/yyyy"
-                      className="w-full px-3 py-2 border border-gray-300 rounded-md"
+                      className="w-full px-3 py-2 border border-teal-400 rounded-md focus:ring-2 focus:ring-teal-500 focus:border-transparent"
                     />
                   </div>
                   <div>
@@ -341,7 +333,7 @@ export default function EditVehicle() {
                     <input
                       type="text"
                       placeholder="Docs Status"
-                      className="w-full px-3 py-2 border border-gray-300 rounded-md"
+                      className="w-full px-3 py-2 border border-teal-400 rounded-md focus:ring-2 focus:ring-teal-500 focus:border-transparent"
                     />
                   </div>
                 </div>
@@ -351,18 +343,18 @@ export default function EditVehicle() {
         </div>
 
         {/* Action Buttons */}
-        <div className="flex justify-center space-x-4 mt-8">
-          <Button variant="outline" className="px-8">
+        <div className="flex justify-end space-x-4 pt-6">
+          <Button variant="outline" className="px-6">
             Clear All
           </Button>
-          <Button variant="outline" className="px-8">
+          <Button variant="outline" className="px-6">
             Switch To Edit Mode
           </Button>
-          <Button className="bg-blue-500 hover:bg-blue-600 text-white px-8">
-            ✓ Save Changes
+          <Button className="bg-blue-500 hover:bg-blue-600 text-white px-6">
+            Save Changes
           </Button>
         </div>
       </div>
-    </div>
+    </DashboardLayout>
   );
 }

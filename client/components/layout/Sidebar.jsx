@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { cn } from "@/lib/utils";
 import {
@@ -22,50 +22,7 @@ const sidebarItems = [
   { name: "EMI Calculator", path: "/emi-calculator", icon: Calculator },
   { name: "Search", path: "/search", icon: Search },
   { name: "Entries", path: "/entries", icon: FileText },
-  { name: "Transactions", path: "/transactions", icon: CreditCard },
 ];
-
-const entriesItems = [
-  { name: "Customer Entry", path: "/entries/customerentry" },
-  { name: "CoBorrower Entry", path: "/entries/coborrowerentry" },
-  { name: "Guarantor Entry", path: "/entries/guarantorentry" },
-  { name: "Loan Entry", path: "/entries/loanentry" },
-  { name: "Vehicle Entry", path: "/entries/vehicleentry" },
-];
-
-const updatesItemsNested = [
-  {
-    name: "UPDATE",
-    children: [
-      { name: "Update Regn NO.", path: "/updates/updateRegnno" },
-      { name: "Update Participation Cheque", path: "/updates/updateparticipationcheque" },
-      { name: "Update Ext Loan Ac No.", path: "/updates/updateextloanacno" },
-      { name: "Update Ext Cheque", path: "/updates/updateextcheque" },
-      { name: "Update Ext EMI Date", path: "/updates/updateextemidate" },
-      { name: "Update Insurance Details", path: "/updates/updateinsurancedetails" },
-      { name: "Upload Insurance Policy", path: "/updates/uploavehicleinsurancepolicy" },
-      { name: "Upload Vehicle Invoice", path: "/updates/uploadvehicleinvoice" },
-      { name: "Track Veh Document", path: "/updates/trackvehdocument" },
-      { name: "Chqs In Clearing", path: "/updates/chqsinclearing" },
-    ],
-  },
-  {
-    name: "EMI PDC",
-    children: [
-      { name: "Update Add PDC", path: "/updates/updateaddpdc" },
-      { name: "Update EMI PDC", path: "/updates/updateemipdc" },
-      { name: "Update Spoiled PDC", path: "/updates/updatespoiledpdc" },
-    ],
-  },
-  {
-    name: "Add",
-    children: [
-      { name: "Add DP Balance", path: "/updates/updateadddownpaymentbalance" },
-      { name: "Add Other Charges", path: "/updates/updateaddothercharges" },
-    ],
-  },
-];
-
 
 const updatesItems = [
   { name: "Update Customer", path: "/updates/customer" },
@@ -73,33 +30,60 @@ const updatesItems = [
   { name: "Update Vehicle", path: "/updates/vehicle" },
 ];
 
+const transactionItems = [
+  { name: "EMI Receipt", path: "/transactions/emi-receipt" },
+  { name: "DP Balance Receipt", path: "/transactions/dp-balance-receipt" },
+  { name: "Add DP Balance", path: "/transactions/add-dp-balance" },
+  { name: "Add Other Charges", path: "/transactions/add-other-charges" },
+  { name: "Other Charges Bal. Receipt", path: "/transactions/other-charges-bal-receipt" },
+  { name: "Check All Dues", path: "/transactions/check-all-dues" },
+  { name: "Loan Settlement", path: "/transactions/loan-settlement" },
+];
+
 const editItems = [
-  { name: "EDIT CUSTOMER", path: "/edits/customer" },
-  { name: "EDIT CO-BORROWER", path: "/edits/co-borrower" },
-  { name: "EDIT GUARANTOR", path: "/edits/guarantor" },
-  { name: "EDIT LOAN", path: "/edits/loan" },
-  { name: "RESTRUCTURE LOAN", path: "/edits/restructure-loan" },
-  { name: "EDIT VEHICLE", path: "/edits/vehicle" },
-  { name: "CHANGE GUARANTOR", path: "/edits/change-guarantor" },
-  { name: "CHANGE HP", path: "/edits/change-hp" },
-  { name: "CHANGE EMI DATE", path: "/edits/change-emi-date" },
-  { name: "EDIT EXT AC NO", path: "/edits/edit-ext-ac-no" },
-]; 
+  { name: "Edit Customer", path: "/edits/customer" },
+  { name: "Edit Co-Borrower", path: "/edits/co-borrower" },
+  { name: "Edit Guarantor", path: "/edits/guarantor" },
+  { name: "Edit Loan", path: "/edits/loan" },
+  { name: "Restructure Loan", path: "/edits/restructure-loan" },
+  { name: "Edit Vehicle", path: "/edits/vehicle" },
+  { name: "Change Guarantor", path: "/edits/change-guarantor" },
+  { name: "Change Hp", path: "/edits/change-hp" },
+  { name: "Change EMI Date", path: "/edits/change-emi-date" },
+  { name: "Edit EXT AC NO", path: "/edits/edit-ext-ac-no" },
+];
+
 const setupSystemItems = [
   { name: "Update OD Loans", path: "/setup/update-od-loans" },
-  { name: "External Resources",
-    children:[
-{ name: "Sales Team", path: "/setup/sales-team" },
-  { name: "Sales Agents", path: "/setup/sales-agents" },
-  { name: "Registration Agents", path: "/setup/registration-agents" },
-  { name: "Collection Agents", path: "/setup/collection-agents" },
-  { name: "Collection Area", path: "/setup/collection-area" },
-  { name: "Dealers", path: "/setup/dealers" },
+  {
+    name: "External Resources",
+    children: [
+      { name: "Sales Team", path: "/setup/sales-team" },
+      { name: "Sales Agents", path: "/setup/sales-agents" },
+      { name: "Registration Agents", path: "/setup/registration-agents" },
+      { name: "Collection Agents", path: "/setup/collection-agents" },
+      { name: "Collection Area", path: "/setup/collection-area" },
+      { name: "Dealers", path: "/setup/dealers" },
     ],
   },
   { name: "Users", path: "/setup/users" },
 ];
 
+const accountReport = [
+  {
+    name: "Reports",
+    children: [
+      { name: "Collection Report", path: "/reports/collection" },
+      { name: "Collection Agent Report", path: "/reports/collectionagent" },
+      { name: "Collection and Pymt Sent", path: "/reports/collectionpymtsent" },
+      { name: "Receipt-wise Collection", path: "/reports/receiptwisecollection" },
+      { name: "DP Collection", path: "/reports/dpcollection" },
+      { name: "Other Charges Collection", path: "/reports/othercharges" },
+      { name: "Cancelled Receipts", path: "/reports/cancelledreceipts" },
+      { name: "Money in Market", path: "/reports/moneyinmarket" },
+    ],
+  },
+];
 
 const reportsItems = [
   {
@@ -150,10 +134,75 @@ const reportsItems = [
   },
 ];
 
-
 export default function Sidebar() {
   const location = useLocation();
   const [openDropdowns, setOpenDropdowns] = useState([]);
+
+  // Function to determine which dropdowns should be open based on current path
+  const getInitialOpenDropdowns = () => {
+    const dropdownsToOpen = [];
+    
+    // Check main sections
+    if (location.pathname.startsWith("/transactions")) {
+      dropdownsToOpen.push("transactions");
+    }
+    if (location.pathname.startsWith("/updates")) {
+      dropdownsToOpen.push("updates");
+    }
+    if (location.pathname.startsWith("/edits")) {
+      dropdownsToOpen.push("edit");
+    }
+    if (location.pathname.startsWith("/reports")) {
+      dropdownsToOpen.push("reports", "accountReport");
+      
+      // Check nested report categories
+      reportsItems.forEach(group => {
+        const hasActiveChild = group.children.some(child => 
+          location.pathname === child.path
+        );
+        if (hasActiveChild) {
+          dropdownsToOpen.push(group.name);
+        }
+      });
+      
+      // Check account report categories
+      accountReport.forEach(group => {
+        const hasActiveChild = group.children.some(child => 
+          location.pathname === child.path
+        );
+        if (hasActiveChild) {
+          dropdownsToOpen.push(group.name);
+        }
+      });
+    }
+    if (location.pathname.startsWith("/setup")) {
+      dropdownsToOpen.push("setupSystem");
+      
+      // Check nested setup categories
+      setupSystemItems.forEach(item => {
+        if (item.children) {
+          const hasActiveChild = item.children.some(child => 
+            location.pathname === child.path
+          );
+          if (hasActiveChild) {
+            dropdownsToOpen.push(item.name);
+          }
+        }
+      });
+    }
+    
+    return dropdownsToOpen;
+  };
+
+  // Update open dropdowns when location changes
+  useEffect(() => {
+    const shouldBeOpen = getInitialOpenDropdowns();
+    setOpenDropdowns(prev => {
+      // Merge existing manually opened dropdowns with path-based ones
+      const merged = [...new Set([...prev, ...shouldBeOpen])];
+      return merged;
+    });
+  }, [location.pathname]);
 
   const toggleDropdown = (dropdownName) => {
     setOpenDropdowns((prev) =>
@@ -168,6 +217,7 @@ export default function Sidebar() {
   const isEditPageActive = location.pathname.startsWith("/edits");
   const isUpdatesPageActive = location.pathname.startsWith("/updates");
   const isReportsPageActive = location.pathname.startsWith("/reports");
+  const isTransactionsPageActive = location.pathname.startsWith("/transactions");
 
   return (
     <div className="w-64 bg-white h-screen shadow-sm border-r border-gray-200 flex flex-col hidden lg:flex">
@@ -210,26 +260,30 @@ export default function Sidebar() {
             );
           })}
 
-          {/* Entries Dropdown */}
+          {/* Transactions Dropdown */}
           <div>
             <button
-              onClick={() => toggleDropdown("entries")}
+              onClick={() => toggleDropdown("transactions")}
               className={cn(
                 "w-full flex items-center justify-between px-3 py-2 rounded-lg text-sm font-medium transition-colors",
-                location.pathname.startsWith("/entries")
+                isTransactionsPageActive
                   ? "bg-primary text-white"
                   : "text-gray-700 hover:bg-gray-100"
               )}
             >
               <div className="flex items-center space-x-3">
                 <FileText className="w-5 h-5" />
-                <span>Entries</span>
+                <span>Transactions</span>
               </div>
-              {isDropdownOpen("entries") ? <ChevronDown className="w-4 h-4" /> : <ChevronRight className="w-4 h-4" />}
+              {isDropdownOpen("transactions") ? (
+                <ChevronDown className="w-4 h-4" />
+              ) : (
+                <ChevronRight className="w-4 h-4" />
+              )}
             </button>
-            {isDropdownOpen("entries") && (
+            {isDropdownOpen("transactions") && (
               <div className="ml-6 mt-1 space-y-1">
-                {entriesItems.map((item) => (
+                {transactionItems.map((item) => (
                   <Link
                     key={item.name}
                     to={item.path}
@@ -251,52 +305,39 @@ export default function Sidebar() {
               onClick={() => toggleDropdown("updates")}
               className={cn(
                 "w-full flex items-center justify-between px-3 py-2 rounded-lg text-sm font-medium transition-colors",
-                location.pathname.startsWith("/updates")
+                isUpdatesPageActive
                   ? "bg-primary text-white"
-                  : "text-gray-700 hover:bg-gray-100"
+                  : "text-gray-700 hover:bg-gray-100",
               )}
             >
               <div className="flex items-center space-x-3">
                 <RefreshCw className="w-5 h-5" />
                 <span>Updates</span>
               </div>
-              {isDropdownOpen("updates") ? <ChevronDown className="w-4 h-4" /> : <ChevronRight className="w-4 h-4" />}
+              {isDropdownOpen("updates") ? (
+                <ChevronDown className="w-4 h-4" />
+              ) : (
+                <ChevronRight className="w-4 h-4" />
+              )}
             </button>
-
             {isDropdownOpen("updates") && (
-              <div className="ml-4 mt-1 space-y-1">
-                {updatesItemsNested.map((group) => (
-                  <div key={group.name}>
-                    <button
-                      onClick={() => toggleDropdown(group.name)}
-                      className="flex justify-between w-full text-left text-sm font-semibold text-gray-700 hover:bg-gray-100 px-3 py-2 rounded"
-                    >
-                      <span>{group.name}</span>
-                      {isDropdownOpen(group.name) ? <ChevronDown className="w-4 h-4" /> : <ChevronRight className="w-4 h-4" />}
-                    </button>
-
-                    {isDropdownOpen(group.name) && (
-                      <div className="ml-4 mt-1 space-y-1">
-                        {group.children.map((item) => (
-                          <Link
-                            key={item.name}
-                            to={item.path}
-                            className={cn(
-                              "block px-3 py-2 text-sm text-gray-600 hover:text-gray-900 hover:bg-gray-50 rounded",
-                              location.pathname === item.path && "text-primary bg-blue-50"
-                            )}
-                          >
-                            {item.name}
-                          </Link>
-                        ))}
-                      </div>
+              <div className="ml-6 mt-1 space-y-1">
+                {updatesItems.map((item) => (
+                  <Link
+                    key={item.name}
+                    to={item.path}
+                    className={cn(
+                      "block px-3 py-2 text-sm text-gray-600 hover:text-gray-900 hover:bg-gray-50 rounded",
+                      location.pathname === item.path &&
+                        "text-primary bg-blue-50",
                     )}
-                  </div>
+                  >
+                    {item.name}
+                  </Link>
                 ))}
               </div>
             )}
           </div>
-
 
           {/* Edit Dropdown */}
           <div>
@@ -311,7 +352,7 @@ export default function Sidebar() {
             >
               <div className="flex items-center space-x-3">
                 <Edit className="w-5 h-5" />
-                <span>EDIT</span>
+                <span>Edit</span>
               </div>
               {isDropdownOpen("edit") ? (
                 <ChevronDown className="w-4 h-4" />
@@ -338,152 +379,203 @@ export default function Sidebar() {
             )}
           </div>
 
-{/* Reports Dropdown with Nested Menus */}
-<div>
-  <button
-    onClick={() => toggleDropdown("reports")}
-    className={cn(
-      "w-full flex items-center justify-between px-3 py-2 rounded-lg text-sm font-medium transition-colors",
-      isReportsPageActive ? "bg-primary text-white" : "text-gray-700 hover:bg-gray-100",
-    )}
-  >
-    <div className="flex items-center space-x-3">
-      <BarChart3 className="w-5 h-5" />
-      <span>Reports</span>
-    </div>
-    {isDropdownOpen("reports") ? (
-      <ChevronDown className="w-4 h-4" />
-    ) : (
-      <ChevronRight className="w-4 h-4" />
-    )}
-  </button>
-
-  {isDropdownOpen("reports") && (
-    <div className="ml-4 mt-1 space-y-1">
-      {reportsItems.map((group) => (
-        <div key={group.name}>
-          <button
-            onClick={() => toggleDropdown(group.name)}
-            className="flex justify-between w-full text-left text-sm font-semibold text-gray-700 hover:bg-gray-100 px-3 py-2 rounded"
-          >
-            <span>{group.name}</span>
-            {isDropdownOpen(group.name) ? (
-              <ChevronDown className="w-4 h-4" />
-            ) : (
-              <ChevronRight className="w-4 h-4" />
-            )}
-          </button>
-
-          {isDropdownOpen(group.name) && (
-            <div className="ml-4 mt-1 space-y-1">
-              {group.children.map((item) => (
-                <Link
-                  key={item.name}
-                  to={item.path}
-                  className={cn(
-                    "block px-3 py-2 text-sm text-gray-600 hover:text-gray-900 hover:bg-gray-50 rounded",
-                    location.pathname === item.path && "text-primary bg-blue-50"
-                  )}
-                >
-                  {item.name}
-                </Link>
-              ))}
-            </div>
-          )}
-        </div>
-      ))}
-    </div>
-  )}
-</div>
-
-
-          {/* Setup and Accounts */}
-
-{/* Setup System Dropdown */}
-<div>
-  <button
-    onClick={() => toggleDropdown("setupSystem")}
-    className={cn(
-      "w-full flex items-center justify-between px-3 py-2 rounded-lg text-sm font-medium transition-colors",
-      location.pathname.startsWith("/setup") ? "bg-primary text-white" : "text-gray-700 hover:bg-gray-100",
-    )}
-  >
-    <div className="flex items-center space-x-3">
-      <Settings className="w-5 h-5" />
-      <span>Setup System</span>
-    </div>
-    {isDropdownOpen("setupSystem") ? (
-      <ChevronDown className="w-4 h-4" />
-    ) : (
-      <ChevronRight className="w-4 h-4" />
-    )}
-  </button>
-
-  {isDropdownOpen("setupSystem") && (
-    <div className="ml-6 mt-1 space-y-1">
-      {setupSystemItems.map((item) =>
-        item.children ? (
-          <div key={item.name}>
+          {/* Reports Dropdown with Nested Menus */}
+          <div>
             <button
-              onClick={() => toggleDropdown(item.name)}
-              className="flex justify-between w-full text-left text-sm font-semibold text-gray-700 hover:bg-gray-100 px-3 py-2 rounded"
+              onClick={() => toggleDropdown("reports")}
+              className={cn(
+                "w-full flex items-center justify-between px-3 py-2 rounded-lg text-sm font-medium transition-colors",
+                isReportsPageActive ? "bg-primary text-white" : "text-gray-700 hover:bg-gray-100",
+              )}
             >
-              <span>{item.name}</span>
-              {isDropdownOpen(item.name) ? (
+              <div className="flex items-center space-x-3">
+                <BarChart3 className="w-5 h-5" />
+                <span>Reports</span>
+              </div>
+              {isDropdownOpen("reports") ? (
                 <ChevronDown className="w-4 h-4" />
               ) : (
                 <ChevronRight className="w-4 h-4" />
               )}
             </button>
-            {isDropdownOpen(item.name) && (
+
+            {isDropdownOpen("reports") && (
               <div className="ml-4 mt-1 space-y-1">
-                {item.children.map((child) => (
-                  <Link
-                    key={child.name}
-                    to={child.path}
-                    className={cn(
-                      "block px-3 py-2 text-sm text-gray-600 hover:text-gray-900 hover:bg-gray-50 rounded",
-                      location.pathname === child.path && "text-primary bg-blue-50"
+                {reportsItems.map((group) => (
+                  <div key={group.name}>
+                    <button
+                      onClick={() => toggleDropdown(group.name)}
+                      className="flex justify-between w-full text-left text-sm font-semibold text-gray-700 hover:bg-gray-100 px-3 py-2 rounded"
+                    >
+                      <span>{group.name}</span>
+                      {isDropdownOpen(group.name) ? (
+                        <ChevronDown className="w-4 h-4" />
+                      ) : (
+                        <ChevronRight className="w-4 h-4" />
+                      )}
+                    </button>
+
+                    {isDropdownOpen(group.name) && (
+                      <div className="ml-4 mt-1 space-y-1">
+                        {group.children.map((item) => (
+                          <Link
+                            key={item.name}
+                            to={item.path}
+                            className={cn(
+                              "block px-3 py-2 text-sm text-gray-600 hover:text-gray-900 hover:bg-gray-50 rounded",
+                              location.pathname === item.path && "text-primary bg-blue-50"
+                            )}
+                          >
+                            {item.name}
+                          </Link>
+                        ))}
+                      </div>
                     )}
-                  >
-                    {child.name}
-                  </Link>
+                  </div>
                 ))}
               </div>
             )}
           </div>
-        ) : (
-          <Link
-            key={item.name}
-            to={item.path}
-            className={cn(
-              "block px-3 py-2 text-sm text-gray-600 hover:text-gray-900 hover:bg-gray-50 rounded",
-              location.pathname === item.path && "text-primary bg-blue-50"
+
+          {/* Setup System Dropdown */}
+          <div>
+            <button
+              onClick={() => toggleDropdown("setupSystem")}
+              className={cn(
+                "w-full flex items-center justify-between px-3 py-2 rounded-lg text-sm font-medium transition-colors",
+                location.pathname.startsWith("/setup") ? "bg-primary text-white" : "text-gray-700 hover:bg-gray-100",
+              )}
+            >
+              <div className="flex items-center space-x-3">
+                <Settings className="w-5 h-5" />
+                <span>Setup System</span>
+              </div>
+              {isDropdownOpen("setupSystem") ? (
+                <ChevronDown className="w-4 h-4" />
+              ) : (
+                <ChevronRight className="w-4 h-4" />
+              )}
+            </button>
+
+            {isDropdownOpen("setupSystem") && (
+              <div className="ml-6 mt-1 space-y-1">
+                {setupSystemItems.map((item) =>
+                  item.children ? (
+                    <div key={item.name}>
+                      <button
+                        onClick={() => toggleDropdown(item.name)}
+                        className="flex justify-between w-full text-left text-sm font-semibold text-gray-700 hover:bg-gray-100 px-3 py-2 rounded"
+                      >
+                        <span>{item.name}</span>
+                        {isDropdownOpen(item.name) ? (
+                          <ChevronDown className="w-4 h-4" />
+                        ) : (
+                          <ChevronRight className="w-4 h-4" />
+                        )}
+                      </button>
+                      {isDropdownOpen(item.name) && (
+                        <div className="ml-4 mt-1 space-y-1">
+                          {item.children.map((child) => (
+                            <Link
+                              key={child.name}
+                              to={child.path}
+                              className={cn(
+                                "block px-3 py-2 text-sm text-gray-600 hover:text-gray-900 hover:bg-gray-50 rounded",
+                                location.pathname === child.path && "text-primary bg-blue-50"
+                              )}
+                            >
+                              {child.name}
+                            </Link>
+                          ))}
+                        </div>
+                      )}
+                    </div>
+                  ) : (
+                    <Link
+                      key={item.name}
+                      to={item.path}
+                      className={cn(
+                        "block px-3 py-2 text-sm text-gray-600 hover:text-gray-900 hover:bg-gray-50 rounded",
+                        location.pathname === item.path && "text-primary bg-blue-50"
+                      )}
+                    >
+                      {item.name}
+                    </Link>
+                  )
+                )}
+              </div>
             )}
-          >
-            {item.name}
-          </Link>
-        )
-      )}
-    </div>
-  )}
-</div>
+          </div>
 
+          {/* Account Report Dropdown */}
+          <div>
+            <button
+              onClick={() => toggleDropdown("accountReport")}
+              className={cn(
+                "w-full flex items-center justify-between px-3 py-2 rounded-lg text-sm font-medium transition-colors",
+                location.pathname.startsWith("/reports") ? "bg-primary text-white" : "text-gray-700 hover:bg-gray-100"
+              )}
+            >
+              <div className="flex items-center space-x-3">
+                <FileText className="w-5 h-5" />
+                <span>Account</span>
+              </div>
+              {isDropdownOpen("accountReport") ? (
+                <ChevronDown className="w-4 h-4" />
+              ) : (
+                <ChevronRight className="w-4 h-4" />
+              )}
+            </button>
 
-
-          <Link
-            to="/accounts"
-            className={cn(
-              "flex items-center space-x-3 px-3 py-2 rounded-lg text-sm font-medium transition-colors",
-              location.pathname === "/accounts"
-                ? "bg-primary text-white"
-                : "text-gray-700 hover:bg-gray-100",
+            {isDropdownOpen("accountReport") && (
+              <div className="ml-6 mt-1 space-y-1">
+                {accountReport.map((item) =>
+                  item.children ? (
+                    <div key={item.name}>
+                      <button
+                        onClick={() => toggleDropdown(item.name)}
+                        className="flex justify-between w-full text-left text-sm font-semibold text-gray-700 hover:bg-gray-100 px-3 py-2 rounded"
+                      >
+                        <span>{item.name}</span>
+                        {isDropdownOpen(item.name) ? (
+                          <ChevronDown className="w-4 h-4" />
+                        ) : (
+                          <ChevronRight className="w-4 h-4" />
+                        )}
+                      </button>
+                      {isDropdownOpen(item.name) && (
+                        <div className="ml-4 mt-1 space-y-1">
+                          {item.children.map((child) => (
+                            <Link
+                              key={child.name}
+                              to={child.path}
+                              className={cn(
+                                "block px-3 py-2 text-sm text-gray-600 hover:text-gray-900 hover:bg-gray-50 rounded",
+                                location.pathname === child.path && "text-primary bg-blue-50"
+                              )}
+                            >
+                              {child.name}
+                            </Link>
+                          ))}
+                        </div>
+                      )}
+                    </div>
+                  ) : (
+                    <Link
+                      key={item.name}
+                      to={item.path}
+                      className={cn(
+                        "block px-3 py-2 text-sm text-gray-600 hover:text-gray-900 hover:bg-gray-50 rounded",
+                        location.pathname === item.path && "text-primary bg-blue-50"
+                      )}
+                    >
+                      {item.name}
+                    </Link>
+                  )
+                )}
+              </div>
             )}
-          >
-            <Users className="w-5 h-5" />
-            <span>Accounts</span>
-            <span className="ml-auto w-2 h-2 bg-red-500 rounded-full"></span>
-          </Link>
+          </div>
         </div>
       </nav>
 

@@ -1,35 +1,27 @@
 import DashboardLayout from "@/components/layout/DashboardLayout";
 import { Button } from "@/components/ui/button";
-import { CheckCircle, DollarSign, Search } from "lucide-react";
+import { CheckCircle, DollarSign } from "lucide-react";
 
 export default function EditExtAcNo() {
   return (
-    <div className="min-h-screen bg-gray-50">
-      {/* Blue Header */}
-      <div className="bg-blue-500 text-white p-4 flex justify-between items-center">
-        <h1 className="text-xl font-semibold">Edit Ext Ac No</h1>
-        <div className="flex items-center space-x-4">
-          <div className="relative">
-            <input
-              type="text"
-              placeholder="Search..."
-              className="px-4 py-2 rounded-md text-gray-900 w-64"
-            />
-          </div>
-          <Button className="bg-blue-700 hover:bg-blue-800 text-white">
-            <Search className="w-4 h-4 mr-2" />
-            Search
-          </Button>
+    <DashboardLayout>
+      <div className="max-w-6xl mx-auto space-y-6">
+        {/* Header */}
+        <div>
+          <h1 className="text-2xl font-semibold text-gray-900">
+            Edit Ext Ac No
+          </h1>
+          <p className="text-sm text-gray-500 mt-1">
+            Edits &gt; Edit Ext Ac No
+          </p>
         </div>
-      </div>
 
-      <div className="p-6 max-w-6xl mx-auto">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
           {/* Left Column - Customer & Loan Details */}
-          <div className="bg-white rounded-lg border-l-4 border-blue-400 p-6">
-            <div className="flex items-center mb-6 text-blue-500">
-              <CheckCircle className="w-5 h-5 mr-2" />
-              <h2 className="text-lg font-semibold">Customer & Loan Details</h2>
+          <div className="bg-white rounded-lg border border-gray-200 p-6">
+            <div className="flex items-center mb-6">
+              <CheckCircle className="w-5 h-5 text-blue-500 mr-2" />
+              <h2 className="text-lg font-semibold text-gray-900">Customer & Loan Details</h2>
             </div>
 
             <div className="space-y-4">
@@ -40,7 +32,7 @@ export default function EditExtAcNo() {
                 <input
                   type="text"
                   placeholder="Customer Name"
-                  className="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                  className="w-full px-3 py-2 border border-teal-400 rounded-md focus:ring-2 focus:ring-teal-500 focus:border-transparent"
                 />
               </div>
 
@@ -51,7 +43,7 @@ export default function EditExtAcNo() {
                 <input
                   type="text"
                   placeholder="Customer ID"
-                  className="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                  className="w-full px-3 py-2 border border-teal-400 rounded-md focus:ring-2 focus:ring-teal-500 focus:border-transparent"
                 />
               </div>
 
@@ -62,7 +54,7 @@ export default function EditExtAcNo() {
                 <input
                   type="text"
                   placeholder="Veh Regn No."
-                  className="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                  className="w-full px-3 py-2 border border-teal-400 rounded-md focus:ring-2 focus:ring-teal-500 focus:border-transparent"
                 />
               </div>
 
@@ -73,7 +65,7 @@ export default function EditExtAcNo() {
                 <input
                   type="text"
                   placeholder="Ext Ac No."
-                  className="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                  className="w-full px-3 py-2 border border-teal-400 rounded-md focus:ring-2 focus:ring-teal-500 focus:border-transparent"
                 />
               </div>
 
@@ -84,17 +76,17 @@ export default function EditExtAcNo() {
                 <input
                   type="text"
                   placeholder="Loan Date"
-                  className="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                  className="w-full px-3 py-2 border border-teal-400 rounded-md focus:ring-2 focus:ring-teal-500 focus:border-transparent"
                 />
               </div>
             </div>
           </div>
 
           {/* Right Column - EMI Details */}
-          <div className="bg-white rounded-lg border-l-4 border-blue-400 p-6">
-            <div className="flex items-center mb-6 text-blue-500">
-              <DollarSign className="w-5 h-5 mr-2" />
-              <h2 className="text-lg font-semibold">EMI Details</h2>
+          <div className="bg-white rounded-lg border border-gray-200 p-6">
+            <div className="flex items-center mb-6">
+              <DollarSign className="w-5 h-5 text-blue-500 mr-2" />
+              <h2 className="text-lg font-semibold text-gray-900">EMI Details</h2>
             </div>
 
             <div className="space-y-4">
@@ -105,7 +97,7 @@ export default function EditExtAcNo() {
                 <input
                   type="text"
                   placeholder="First EMI Date"
-                  className="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                  className="w-full px-3 py-2 border border-teal-400 rounded-md focus:ring-2 focus:ring-teal-500 focus:border-transparent"
                 />
               </div>
 
@@ -116,7 +108,7 @@ export default function EditExtAcNo() {
                 <input
                   type="text"
                   placeholder="DD-MM-YYYY"
-                  className="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                  className="w-full px-3 py-2 border border-teal-400 rounded-md focus:ring-2 focus:ring-teal-500 focus:border-transparent"
                 />
               </div>
 
@@ -127,7 +119,7 @@ export default function EditExtAcNo() {
                 <input
                   type="text"
                   placeholder="Ext Party Name"
-                  className="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                  className="w-full px-3 py-2 border border-teal-400 rounded-md focus:ring-2 focus:ring-teal-500 focus:border-transparent"
                 />
               </div>
 
@@ -144,15 +136,15 @@ export default function EditExtAcNo() {
         </div>
 
         {/* Action Buttons */}
-        <div className="flex justify-center space-x-4 mt-8">
-          <Button className="bg-blue-500 hover:bg-blue-600 text-white px-12 py-3 text-lg">
-            UPDATE
+        <div className="flex justify-end space-x-4 pt-6">
+          <Button variant="outline" className="px-6">
+            Clear All
           </Button>
-          <Button variant="outline" className="px-12 py-3 text-lg">
-            Clear all
+          <Button className="bg-blue-500 hover:bg-blue-600 text-white px-6">
+            Update
           </Button>
         </div>
       </div>
-    </div>
+    </DashboardLayout>
   );
 }
