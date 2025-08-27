@@ -20,7 +20,6 @@ import {
 const sidebarItems = [
   { name: "Dashboard", path: "/", icon: LayoutDashboard },
   { name: "EMI Calculator", path: "/emi-calculator", icon: Calculator },
-  { name: "Search", path: "/search", icon: Search },
   { name: "Entries", path: "/entries", icon: FileText },
 ];
 
@@ -38,6 +37,12 @@ const transactionItems = [
   { name: "Other Charges Bal. Receipt", path: "/transactions/other-charges-bal-receipt" },
   { name: "Check All Dues", path: "/transactions/check-all-dues" },
   { name: "Loan Settlement", path: "/transactions/loan-settlement" },
+];
+
+const searchItems = [
+  { name: "Search Customer", path: "/search/customer" },
+  { name: "Search Guarantor", path: "/search/guarantor" },
+  { name: "Search Receipt", path: "/search/receipts" },
 ];
 
 const editItems = [
@@ -141,6 +146,11 @@ export default function Sidebar() {
   // Function to determine which dropdowns should be open based on current path
   const getInitialOpenDropdowns = () => {
     const dropdownsToOpen = [];
+
+    // ADD THIS BLOCK
+  if (location.pathname.startsWith("/search")) {
+    dropdownsToOpen.push("search");
+  }
     
     // Check main sections
     if (location.pathname.startsWith("/transactions")) {
@@ -218,6 +228,7 @@ export default function Sidebar() {
   const isUpdatesPageActive = location.pathname.startsWith("/updates");
   const isReportsPageActive = location.pathname.startsWith("/reports");
   const isTransactionsPageActive = location.pathname.startsWith("/transactions");
+  const isSearchPageActive = location.pathname.startsWith("/search");
 
   return (
     <div className="w-64 bg-white h-screen shadow-sm border-r border-gray-200 flex flex-col hidden lg:flex">
@@ -259,6 +270,45 @@ export default function Sidebar() {
               </Link>
             );
           })}
+
+          {/* Search Dropdown */}
+          <div>
+            <button
+              onClick={() => toggleDropdown("search")}
+              className={cn(
+                "w-full flex items-center justify-between px-3 py-2 rounded-lg text-sm font-medium transition-colors",
+                isSearchPageActive
+                  ? "bg-primary text-white"
+                  : "text-gray-700 hover:bg-gray-100"
+              )}
+            >
+              <div className="flex items-center space-x-3">
+                <Search className="w-5 h-5" />
+                <span>Search</span>
+              </div>
+              {isDropdownOpen("search") ? (
+                <ChevronDown className="w-4 h-4" />
+              ) : (
+                <ChevronRight className="w-4 h-4" />
+              )}
+            </button>
+            {isDropdownOpen("search") && (
+              <div className="ml-6 mt-1 space-y-1">
+                {searchItems.map((item) => (
+                  <Link
+                    key={item.name}
+                    to={item.path}
+                    className={cn(
+                      "block px-3 py-2 text-sm text-gray-600 hover:text-gray-900 hover:bg-gray-50 rounded",
+                      location.pathname === item.path && "text-primary bg-blue-50"
+                    )}
+                  >
+                    {item.name}
+                  </Link>
+                ))}
+              </div>
+            )}
+          </div>
 
           {/* Transactions Dropdown */}
           <div>
